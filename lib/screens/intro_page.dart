@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tumble/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tumble/screens/login_page.dart';
 class IntroPage extends StatelessWidget {
   const IntroPage({Key? key}) : super(key: key);
   static const id="intropage";
@@ -26,8 +27,9 @@ class IntroPage extends StatelessWidget {
               children: [
 
                 Padding(padding: EdgeInsets.only(top: 100),  child: Image.asset("assets/logo.png",height: 50,)),
-                Image.asset("assets/text_intro.png",),
-                SizedBox(height:450,),
+                Image.asset("assets/text_intro.png",
+                width:600,),
+                Spacer(),
 
                 Column(
                   mainAxisSize: MainAxisSize.min,
@@ -50,6 +52,7 @@ class IntroPage extends StatelessWidget {
                         )
                     ),
                     onPressed: () async{
+                      Navigator.pushNamed(context, LoginPage.id);
                     },
                     child: Text('Use mobile number',style: GoogleFonts.sourceSansPro(textStyle:
                     TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.w600))),
@@ -60,8 +63,11 @@ class IntroPage extends StatelessWidget {
                       "we use your data in our Privacy Policy\n"
                       "We never post to Facebook",textAlign: TextAlign.center,
                     style: GoogleFonts.sourceSansPro(textStyle: TextStyle(fontWeight: FontWeight.w500),),
+
                     // style: TextStyle(fontWeight: FontWeight.w400),
-                  )],),
+                  ),
+                    SizedBox(height: 20,),
+                  ],),
 
               ],
             ),

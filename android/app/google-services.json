@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "313926111758",
+    "project_id": "tumble-8c32b",
+    "storage_bucket": "tumble-8c32b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:313926111758:android:117d31e1d2daacbc77225f",
+        "android_client_info": {
+          "package_name": "com.example.tumble"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "313926111758-e5nj472a803kc08bpbubba1ltlhnml8s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tumble",
+            "certificate_hash": "bdad0217e79073b34e1db7f81a8fb083854ed1a9"
+          }
+        },
+        {
+          "client_id": "313926111758-cl1nianqd47dcn5fs5u09ftg6pmk5dh3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDB16_t7zNPO6U-pKuBq-wRQrVLJtwT64M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "313926111758-cl1nianqd47dcn5fs5u09ftg6pmk5dh3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
