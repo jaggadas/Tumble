@@ -209,77 +209,84 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      backgroundColor: kBumbleYellow,
+      appBar: AppBar(elevation: 0,backgroundColor: kBumbleYellow,centerTitle: true,leading: IconButton(onPressed: (){AuthService().signOut(context);}, icon: Icon(Icons.arrow_back_ios_rounded,color: Colors.black,)),title: Text('bumble',
+        style: GoogleFonts.sourceSansPro(textStyle: TextStyle(color: Colors.black,fontSize: 30)),),),
 
-      appBar: AppBar(elevation: 0,backgroundColor: Colors.white,centerTitle: true,leading: IconButton(onPressed: (){AuthService().signOut(context);}, icon: Icon(Icons.arrow_back_ios_rounded,color: kBumbleYellow,)),title: Text('bumble',
-        style: GoogleFonts.sourceSansPro(textStyle: TextStyle(color: kBumbleYellow,fontSize: 30)),),),
-
-      body:  Container(
+      body:
+      Container(
           child: Column(children: [
             Container(
               padding: EdgeInsets.symmetric(horizontal: 10,vertical: 0),
-              height: 600,
+              height: 650,
               child:loaded?
               SwipeCards(
                 matchEngine: matchEngine,
                 itemBuilder: (BuildContext context, int index) {
-                  return SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                       Stack(
-                         children: [
-                           Image.network( _swipeItems[index].content.url1),
+                  return Stack(
+                    children: [
+                      Container(height: double.infinity,width: double.infinity,color: kBumbleYellow,),
+                      SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                           Stack(
+                             children: [
+                               ClipRRect(borderRadius: BorderRadius.circular(15),child: Image.network( _swipeItems[index].content.url1)),
 
-                           Padding(
-                             padding: const EdgeInsets.all(8.0),
-                             child: Column(
-                               children: [
-                                 Text("${   _swipeItems[index].content.name}, 19",style: GoogleFonts.sourceSansPro(textStyle: TextStyle(color: Colors.white,fontSize: 40,fontWeight: FontWeight.bold)),),
-                               ],
-                             ),
+                               Column(
+                                 children: [
+
+                                   Container(padding: EdgeInsets.symmetric(horizontal: 10),decoration: BoxDecoration(borderRadius:BorderRadius.circular(15),color: Color(0x30000000), ),width: double.infinity,child: Text("${   _swipeItems[index].content.name}, 19",style: GoogleFonts.sourceSansPro(textStyle: TextStyle(color: Colors.white,fontSize: 40,fontWeight: FontWeight.bold)),)),
+                                 ],
+                               ),
+                             ],
                            ),
-                         ],
-                       ),
-                        Container(
-                          width: double.infinity,
-                          color: Colors.white,
-                          child: Text(
-                           "My Interests",style: GoogleFonts.sourceSansPro(textStyle: TextStyle(fontSize: 25,fontWeight: FontWeight.w600)),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.symmetric(vertical: 10),
-                          width: double.infinity,
-                          color: Colors.white,
-                          child: StaggeredGrid.count(
-                              crossAxisCount: 4,
-                              mainAxisSpacing: 4,
-                              crossAxisSpacing: 4,
-                              children:
-                              generateListOfWidgets([ListElementData(text: "Yoga", cellCount: 1),ListElementData(text: "Running", cellCount: 2),
-                                ListElementData(text: "Gym", cellCount: 1),ListElementData(text: "Football", cellCount: 2,),ListElementData(text: "Cricket", cellCount: 2)
-                              ])
-                          ),
-                        ),
+                            Container(
+                              width: double.infinity,
+                              color: kBumbleYellow,
+                              child: Text(
+                               "My Interests",style: GoogleFonts.sourceSansPro(textStyle: TextStyle(fontSize: 25,fontWeight: FontWeight.w600)),
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.symmetric(vertical: 10),
+                              width: double.infinity,
 
-                        Image.network(_swipeItems[index].content.url2),
+                              color:  kBumbleYellow,
+                              child: StaggeredGrid.count(
+                                  crossAxisCount: 4,
+                                  mainAxisSpacing: 4,
+                                  crossAxisSpacing: 4,
+                                  children:
+                                  generateListOfWidgets([ListElementData(text: "Yoga", cellCount: 1),ListElementData(text: "Running", cellCount: 2),
+                                    ListElementData(text: "Gym", cellCount: 1),ListElementData(text: "Football", cellCount: 2,),ListElementData(text: "Cricket", cellCount: 2)
+                                  ])
+                              ),
+                            ),
 
-                        Container(
-                          width: double.infinity,
-                          color: Colors.white,
-                          child: Text(
-                            "Bio",style: GoogleFonts.sourceSansPro(textStyle: TextStyle(fontSize: 25,fontWeight: FontWeight.w600)),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.symmetric(vertical: 10),
-                          width: double.infinity,
-                          color: Colors.white,
-                          child:Text(_swipeItems[index].content.bio,style: GoogleFonts.sourceSansPro(textStyle: TextStyle(fontSize: 18)),)
-                        ),
 
-                      ],
-                    ),
+                            ClipRRect(borderRadius: BorderRadius.circular(15),child: Image.network( _swipeItems[index].content.url2)),
+
+                            Container(
+                              width: double.infinity,
+                              color: kBumbleYellow,
+                              child: Text(
+                                "Bio",style: GoogleFonts.sourceSansPro(textStyle: TextStyle(fontSize: 25,fontWeight: FontWeight.w600)),
+                              ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),   color: Colors.white,),
+                              padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+                              width: double.infinity,
+
+                              child:Text(_swipeItems[index].content.bio,style: GoogleFonts.sourceSansPro(textStyle: TextStyle(fontSize: 18)),)
+                            ),
+
+                          ],
+                        ),
+                      ),
+                    ],
                   );
                 },
                 onStackFinished: () {

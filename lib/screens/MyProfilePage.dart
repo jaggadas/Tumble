@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:swipe_cards/profile_card.dart';
 import 'package:tumble/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -45,6 +46,30 @@ class _ProfilePageState extends State<ProfilePage> {
   var phone= 'no';
   var preference= 'x';
   bool  gotDetails=false;
+  generateListOfWidgets(List list){
+    List<Widget> listOfWidgets=[];
+    for(ListElementData elem in list){
+      listOfWidgets.add(
+          StaggeredGridTile.count(crossAxisCellCount: elem.cellCount, mainAxisCellCount: 1,
+              child:
+              Widgett(bgcolour: Colors.white, icon: Icon(Icons.interests), title: Text(elem.text,style: TextStyle(fontSize: 15),),
+                  onPress: (){
+                    if(interests.length<5){
+                      print("hello");
+                      interests.add(elem.text);
+                      // setState(() {
+                      //   // interests;
+                      // });
+                      print(interests.length);
+                    }else{print("whyu");}
+
+                  })
+          )
+      );
+    }
+    return listOfWidgets;
+
+  }
   getUserDetails()async{
     var userData =
         await firestore.collection(kUsers).doc(auth.currentUser?.uid).get();
@@ -85,7 +110,7 @@ class _ProfilePageState extends State<ProfilePage> {
           children: [
             Column(crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.network('$imagePath1'),
+                ClipRRect(borderRadius: BorderRadius.circular(15),child: Image.network( imagePath1)),
                 SizedBox(height: 10,),
                 Container(width: double.infinity,
                   padding: EdgeInsets.all(5),
@@ -103,12 +128,22 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),   SizedBox(height: 10,),
                 Text('Interests', style: GoogleFonts.sourceSansPro(textStyle:
                 TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w600,))),
-                Container(width: double.infinity,
-                  padding: EdgeInsets.all(5),
-                  decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color: Colors.white,),
-                  child: Text('$interests', style: GoogleFonts.sourceSansPro(textStyle:
-                  TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w500))),
-                ),   SizedBox(height: 10,),
+                // Container(width: double.infinity,
+                //   padding: EdgeInsets.all(5),
+                //   decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color: Colors.white,),
+                //   child: Text('$interests', style: GoogleFonts.sourceSansPro(textStyle:
+                //   TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w500))),
+                // ),
+                StaggeredGrid.count(
+                    crossAxisCount: 4,
+                    mainAxisSpacing: 4,
+                    crossAxisSpacing: 4,
+                    children:
+                    generateListOfWidgets([ListElementData(text: "Art", cellCount: 1),ListElementData(text: "Design", cellCount: 1),
+                      ListElementData(text: "Make-up", cellCount: 2),ListElementData(text: "Photography", cellCount: 2,),ListElementData(text: "Writing", cellCount: 2)
+                    ])
+                ),
+                SizedBox(height: 10,),
                 Text('Birth Date', style: GoogleFonts.sourceSansPro(textStyle:
                 TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w600,))),
                 Row(

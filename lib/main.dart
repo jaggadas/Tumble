@@ -27,8 +27,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home:
-        AuthService().getCurrentUser()==null?IntroPage():NamePage(),
+        home:HomePage(),
+        // AuthService().getCurrentUser()==null?IntroPage():HomePage(),
         routes: {
           IntroPage.id: (context) => IntroPage(),
           LoginPage.id:(context)=>LoginPage(),
